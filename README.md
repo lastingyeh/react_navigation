@@ -122,7 +122,37 @@
     2.2 *StackNavigatorConfig = {initialRouteName: 'Index',
                                   headerMode: 'none',
                                   mode: Platform.OS === 'ios' ? 'modal' : 'card'}
-    2.3 'Index' above -> default Screen,it must mapping initialRouteName:'Index' to Index:{screen:MainScreen}
+    2.3 the 'Index' symbol -> default Screen,it must match initialRouteName:'Index' to Index:{screen:MainScreen}
+
+### TabNavigator
+
+  1. get 'TabNavigator' -> import { TabNavigator } from 'react-navigation'
+
+  2. const AppNavigator = TabNavigator(*RouteConfigs,*TabNavgatorConfig?)
+
+    2.1 *RouteConfigs as the same as 'StackNavigator'
+    2.2 *StackNavigatorConfig = {
+          tabBarOptions: {
+            activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff'
+          }
+        }
+    
+  3. MyScreen.navigationOptions = {
+        tabBarLabel: 'Settings',
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Ionicons
+            name={focused ? 'ios-settings' : 'ios-settings-outline'}
+            size={26}
+            style={{ color: tintColor }}
+          />
+        )
+      };
+
+  4. add Icon
+
+    4.1 npm i --save-dev react-native-vector-icons
+    4.2 react-native link react-native-vector-icons
+    4.3 restart run app
 
       
 
