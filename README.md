@@ -86,6 +86,47 @@
 
           2.6.2.3 as isInfo = true -> state.params.mode = 'info' or not = 'none'
 
+### Navigator Props
+
+  1. navigation
+
+    1.1 dispatch:func -> send an action to router
+
+      1.1.1 get 'NavigationActions' -> import { NavigationActions } from 'react-navigation'
+      1.1.2 create action -> const navigateAction = NavigationActions.navigate({
+                                routeName:'Profile',
+                                params:{},
+                                action:NavigationActions.navigate({routeName:'SubProfileRoute'})
+                              })
+      1.1.3 call dispatch -> this.props.navigation.dispatch(navigateAction)
+
+    1.2 goBack:func -> (helper) close active screen and move back
+
+      1.2.1 goBack() -> go back from this Home Screen 
+      1.2.2 goBack(null) -> go back anywhere
+      1.2.3 goBack('screen123') -> go back from screen123
+
+    1.3 navigate(routeName,params,action):func ->  (helper) link to other screens
+
+    1.4 setParams({key,value}):func -> (helper) make changes to route's params
+
+    1.5 state -> screen's current state/routes
+
+### StackNavigator
+
+  1. get 'StackNavigator' -> import { StackNavigator } from 'react-navigation'
+
+  2. const AppNavigator = StackNavigator(*RouteConfigs,*StackNavigatorConfig?)
+
+    2.1 *RouteConfigs = {SimpleStack:{screen:SimpleStack},Index:{screen:MainScreen}}
+    2.2 *StackNavigatorConfig = {initialRouteName: 'Index',
+                                  headerMode: 'none',
+                                  mode: Platform.OS === 'ios' ? 'modal' : 'card'}
+    2.3 'Index' above -> default Screen,it must mapping initialRouteName:'Index' to Index:{screen:MainScreen}
+
+      
+
+
                                                  
 
       
