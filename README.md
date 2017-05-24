@@ -116,28 +116,39 @@
 
   1. get 'StackNavigator' -> import { StackNavigator } from 'react-navigation'
 
-  2. const AppNavigator = StackNavigator(*RouteConfigs,*StackNavigatorConfig?)
+  2. const AppNavigator = StackNavigator(*RouteConfigs,*StackNavigatorConfig)
 
-    2.1 *RouteConfigs = {SimpleStack:{screen:SimpleStack},Index:{screen:MainScreen}}
-    2.2 *StackNavigatorConfig = {initialRouteName: 'Index',
-                                  headerMode: 'none',
-                                  mode: Platform.OS === 'ios' ? 'modal' : 'card'}
-    2.3 the 'Index' symbol -> default Screen,it must match initialRouteName:'Index' to Index:{screen:MainScreen}
+    2.1 *RouteConfigs 
+        
+        {SimpleStack:{screen:SimpleStack},Index:{screen:MainScreen}}
+
+    2.2 *StackNavigatorConfig = 
+    
+        {initialRouteName: 'Index',
+          headerMode: 'none',
+          mode: Platform.OS === 'ios' ? 'modal' : 'card'}
+
+    2.3 'Index' symbol -> default Screen,it must match initialRouteName:'Index' to Index:{screen:MainScreen}
 
 ### TabNavigator
 
   1. get 'TabNavigator' -> import { TabNavigator } from 'react-navigation'
 
-  2. const AppNavigator = TabNavigator(*RouteConfigs,*TabNavgatorConfig?)
+  2. const AppNavigator = TabNavigator(*RouteConfigs,*TabNavgatorConfig)
 
     2.1 *RouteConfigs as the same as 'StackNavigator'
-    2.2 *StackNavigatorConfig = {
+
+    2.2 *TabNavgatorConfig 
+        
+        {
           tabBarOptions: {
             activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff'
           }
         }
     
-  3. MyScreen.navigationOptions = {
+  3. Screen settings
+
+      MyScreen.navigationOptions = {
         tabBarLabel: 'Settings',
         tabBarIcon: ({ tintColor, focused }) => (
           <Ionicons
@@ -154,8 +165,92 @@
     4.2 react-native link react-native-vector-icons
     4.3 restart run app
 
-      
+### DrawerNavigator
 
+  1. get 'DrawerNavigator' -> import { DrawerNavigator } from 'react-navigation'
+
+  2. const DrawerExample = DrawerNavigator(*RouterConfigs,*DrawerNavigatorConfig)
+
+    2.1 *RouteConfigs as the same as 'StackNavigator'
+
+    2.2 *DrawerNavigatorConfig
+        
+        *DrawerNavigatorConfig = {
+          initialRouteName: 'Drafts',
+          contentOptions: {
+            activeTintColor: '#e91e63'
+          }
+        }
+
+        2.2.1 custom Drawer Content
+
+          2.2.1.1 get DrawerItems
+
+            import {DrawerItems} from 'react-navigation'
+            
+          2.2.1.2 use contentComponent at DrawerNavigatorConfig 
+
+            contentComponent:props=><ScrollView><DrawerItems {...props}/></ScrollView>
+
+  3. Screen settings
+      
+      DraftsScreen.navigationOptions = {
+        drawerLabel: 'Drafts',
+        drawerIcon: ({ tintColor }) => (
+          <MaterialIcons name="drafts" size={24} style={{ color: tintColor }} />
+        )
+      };
+
+  4. add Icon
+
+    4.1 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+    
+    4.2 <MaterialIcons
+          name="move-to-inbox"
+          size={24}
+          style={{ color: tintColor }}/>
+
+### TabsInDrawer
+
+  1. project structure
+
+    1.1 DrawerNavigator(*routeConfigs)
+      
+        *routeConfigs
+
+        - SimpleTabs({screen,navigationOptions:{drawer:{label,icon}}})
+
+          TabNavigator(*routeConfigs)
+          
+          *routeConfigs
+            
+            - Home({screen,path})
+
+            - People({screen,path})
+
+            - Chat({screen,path})
+
+            - Settings({screen,path})
+        
+        - StacksOverTabs({screen,navigationOptions:{drawer:{label,icon}}})
+
+          *routeConfigs
+
+          - Root({screen})
+
+            TabNavigator(*routeConfigs,*TabNavigatorConfig)
+
+            *routeConfigs
+
+              - MainTab({screen,path,navigation:{title,tabBarLabel,tabBarIcon}})
+
+              - SettingsTab({screen,path,navigation:{title,tabBarLabel,tabBarIcon}})
+
+            *TabNavigatorConfig({tabBarPosition,animationEnabled,swipeEnabled})
+
+          - NotifSettings({screen,navigationOptions:{title}})
+
+          - Profile({screen,navigationOptions:{title}})
 
                                                  
 

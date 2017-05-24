@@ -3,8 +3,7 @@ import React from 'react';
 import { Button, Platform, ScrollView, StyleSheet } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-import SampleText from './SampleText';
+import SampleText from '../component/SampleText';
 
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView style={styles.container}>
@@ -21,7 +20,7 @@ const MyNavScreen = ({ navigation, banner }) => (
   </ScrollView>
 );
 
-// Home Tab Screen
+// Home Screen
 const MyHomeScreen = ({ navigation }) => (
   <MyNavScreen banner="Home Tab" navigation={navigation} />
 );
@@ -36,9 +35,24 @@ MyHomeScreen.navigationOptions = {
   )
 };
 
-// Poeple Tab Screen
+// Chat Screen
+const MyChatScreen = ({ navigation }) => (
+  <MyNavScreen banner="Chat Tab" navigation={navigation} />
+);
+MyChatScreen.navigationOptions = {
+  tabBarLabel: 'Chat',
+  tabBarIcon: ({ tintColor, focused }) => (
+    <Ionicons
+      name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
+      size={26}
+      style={{ color: tintColor }}
+    />
+  )
+};
+
+// People Screen
 const MyPeopleScreen = ({ navigation }) => (
-  <MyNavScreen banner="People" navigation={navigation} />
+  <MyNavScreen banner="People Tab" navigation={navigation} />
 );
 MyPeopleScreen.navigationOptions = {
   tabBarLabel: 'People',
@@ -51,27 +65,10 @@ MyPeopleScreen.navigationOptions = {
   )
 };
 
-// Chat Tab Screen
-const MyChatScreen = ({ navigation }) => (
-  <MyNavScreen banner="Chat Tab" navigation={navigation} />
-);
-
-MyChatScreen.navigationOptions = {
-  tabBarLabel: 'Chat',
-  tabBarIcon: ({ tintColor, focused }) => (
-    <Ionicons
-      name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
-      size={26}
-      style={{ color: tintColor }}
-    />
-  )
-};
-
-// Settings Tab Screen
+// Chat Screen
 const MySettingsScreen = ({ navigation }) => (
   <MyNavScreen banner="Settings Tab" navigation={navigation} />
 );
-
 MySettingsScreen.navigationOptions = {
   tabBarLabel: 'Settings',
   tabBarIcon: ({ tintColor, focused }) => (
@@ -83,7 +80,6 @@ MySettingsScreen.navigationOptions = {
   )
 };
 
-// add to TabNavigator
 const SimpleTabs = TabNavigator(
   {
     Home: {

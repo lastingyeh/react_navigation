@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, ScrollView } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-import SampleText from './SampleText';
+import SampleText from '../component/SampleText';
 
 // default Screen
 const MyNavScreen = ({ navigation, banner }) => (
