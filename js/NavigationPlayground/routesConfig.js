@@ -2,6 +2,7 @@ import SimpleStack from './pages/SimpleStack';
 import SimpleTabs from './pages/SimpleTabs';
 import Drawer from './pages/Drawer';
 import TabsInDrawer from './pages/TabsInDrawer';
+import CustomTabs from './pages/CustomTabs';
 
 const ExampleRoutes = {
   SimpleStack: {
@@ -23,6 +24,11 @@ const ExampleRoutes = {
     name: 'Draser + Tabs Example',
     description: 'A drawer combined with tabs',
     screen: TabsInDrawer
+  },
+  CustomTabs: {
+    name: 'Custom Tabs',
+    description: 'Custom tabs with tab router',
+    screen: CustomTabs
   }
 };
 

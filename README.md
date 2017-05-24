@@ -252,6 +252,138 @@
 
           - Profile({screen,navigationOptions:{title}})
 
+### CustomTabs
+
+  1. create screen
+
+      - MyHomeScreen
+
+      - MyNotificationsScreen
+
+      - MySettingsScreen
+
+  2. create custom view for tabBars use
+
+      const CustomTabBar = ({ navigation }) => {
+        const { routes } = navigation.state;
+
+        return (
+          <View style={styles.tabContainer}>
+            {routes.map(route => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate(route.routeName)}
+                style={styles.tab}
+                key={route.routeName}
+              >
+                <Text>{route.routeName}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        );
+      };
+
+  3. set tabBars to merge with customTabView
+
+      const CustomTabView = ({ router, navigation }) => {
+        const { routes, index } = navigation.state;
+        const ActiveScreen = router.getComponentForState(navigation.state);
+
+        return (
+          <View style={styles.container}>
+            <CustomTabBar navigation={navigation} />
+            <ActiveScreen
+              navigation={addNavigationHelpers({
+                ...navigation,
+                state: routes[index]
+              })}
+            />
+          </View>
+        );
+      };
+
+  4. create TabRouter
+
+      4.1 import { TabRouter } from 'react-navigation'
+
+      4.2 set customTabRouter
+
+        const customTabRouter = TabRouter(
+          {
+            Home: {
+              screen: MyHomeScreen,
+              path: ''
+            },
+            Notifications: {
+              screen: MyNotificationsScreen,
+              path: 'notifications'
+            },
+            Settings: {
+              screen: MySettingsScreen,
+              path: 'settings'
+            }
+          },
+          {
+            initialRouteName: 'Home'
+          }
+        );
+
+      4.3 create TabNavigator
+
+        4.3.1 import { createNavigationContainer,createNavigator } from 'react-navigation'
+
+        4.3.2 create TabNavigator
+
+          const CustomTabs = createNavigationContainer(
+            createNavigator(customTabRouter)(CustomTabView)
+          );
+    
+    5. memo
+
+      5.1 addNavigationHelpers -> augment our navigation prop
+
+        5.1.1 demo
+          
+          addNavigationHelpers({...navigation},state:route[index])
+
+      5.2 TabRouter -> set of tabs,handle jumping to tabs, and handle the back button press to jump to the initial tab.
+
+        5.2.1 demo
+
+          const customTabRouter = TabRouter(
+          {
+            Home: {
+              screen: MyHomeScreen,
+              path: ''
+            },
+            Notifications: {
+              screen: MyNotificationsScreen,
+              path: 'notifications'
+            },
+            Settings: {
+              screen: MySettingsScreen,
+              path: 'settings'
+            }
+          },
+          {
+            initialRouteName: 'Home'
+          }
+        );
+
+      5.3 createNavigator -> combines a router and a navigation view
+
+        5.3.1 demo
+
+          createNavigator(customTabRouter)(CustomTabView)
+
+      5.4 createNavigationContainer -> be usable as a top-level component,it makes navigator act like a top-level navigator when the navigation prop is missing.It will manage the app state, and integrate with app-level nav features, like handling incoming and outgoing links, and Android back button behavior.
+
+        5.4.1 demo
+
+          const CustomTabs = createNavigationContainer(
+            createNavigator(customTabRouter)(CustomTabView)
+          );
+
+
                                                  
 
       
