@@ -63,6 +63,7 @@ const CustomTabBar = ({ navigation }) => {
 // custom tabView
 const CustomTabView = ({ router, navigation }) => {
   const { routes, index } = navigation.state;
+  // get current screen
   const ActiveScreen = router.getComponentForState(navigation.state);
 
   return (

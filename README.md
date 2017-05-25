@@ -383,6 +383,87 @@
             createNavigator(customTabRouter)(CustomTabView)
           );
 
+#### DeepLink (like as redirect to path)
+
+  1. deep link to specific path
+
+    1.1 StackNavigator / StackNavigator
+
+      1.1.1 parent StackNavigator
+      
+      LinkTabs:{
+        name: 'Link in Stack',
+        description: 'Deep linking into a route in stack',
+        screen: SimpleStack,
+        path: 'people/Jordan'
+      }
+
+      1.1.2 children StackNavigator
+
+      const SimpleStack = StackNavigator({
+        Home: {
+          screen: MyHomeScreen
+        },
+        Profile: {
+          path: 'people/:name',
+          screen: MyProfileScreen
+        },
+        Photos: {
+          path: 'photos/:name',
+          screen: MyPhotoScreen
+        }
+      });
+
+      1.1.3 output
+
+      As mapping to path 'people/:name',and Redirect to MyProfileScreen
+
+    1.2 StackNavigator / TabNavigator
+
+      1.2.1 parent StackNavigator
+
+      LinkTabs: {
+        name: 'Link to Settings Tab',
+        description: 'Deep linking into a route in tab',
+        screen: SimpleTabs,
+        path: 'settings'
+      }
+
+      1.2.2 children TabNavigator
+
+      const SimpleTabs = TabNavigator(
+        {
+          Home: {
+            screen: MyHomeScreen,
+            path: ''
+          },
+          People: {
+            screen: MyPeopleScreen,
+            path: 'cart'
+          },
+          Chat: {
+            screen: MyChatScreen,
+            path: 'chat'
+          },
+          Settings: {
+            screen: MySettingsScreen,
+            path: 'settings'
+          }
+        },
+        {
+          tabBarOptions: {
+            activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
+            showIcon: true
+          }
+        }
+      );
+
+      1.2.3 output
+
+      match path 'settings',and redirect to MySettingsScreen
+
+
+
 
                                                  
 
