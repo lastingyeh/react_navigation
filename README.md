@@ -162,7 +162,7 @@
   4. add Icon
 
     4.1 npm i --save-dev react-native-vector-icons
-    4.2 react-native link react-native-vector-icons
+    4.2 react-native link react-native-vector-icons || rnpm link
     4.3 restart run app
 
 ### DrawerNavigator
@@ -383,7 +383,7 @@
             createNavigator(customTabRouter)(CustomTabView)
           );
 
-#### DeepLink (like as redirect to path)
+### DeepLink (like as redirect to path)
 
   1. deep link to specific path
 
@@ -462,6 +462,50 @@
 
       match path 'settings',and redirect to MySettingsScreen
 
+### ReduxExample
+
+  1. project structure
+
+    <AppWithNavigationState>
+      - <AppNavigator>
+        - StackNavigator
+          - LoginScreen
+          - MainScreen
+            - LoginStatusMessage
+            - AuthButton 
+          - ProfileScreen
+
+  2. dispatch (navigation)
+
+    2.1 at LoginScreen,the 'navigation.dispatch' of props brings to 'Reducer' without self-defined 'Action'
+
+    2.3 at reducer
+
+      2.3.1 defined initialState for navigationState
+
+        2.3.1.1 get action
+
+          const secondAction = AppNavigator.router.getActionForPathAndParams('Login');
+          
+        2.3.1.2 get state
+
+          const firstAction = AppNavigator.router.getActionForPathAndParams('Main');
+
+          const tempNavState = AppNavigator.router.getStateForAction(firstAction);
+
+        2.3.1.3 create initialNavState
+
+          const initialNavState = AppNavigator.router.getStateForAction(
+            secondAction,
+            tempNavState
+          );
+
+      2.3.2 define nextState to navigate
+
+        nextState = AppNavigator.router.getStateForAction(
+          NavigationActions.navigate({ routeName: 'Login' }),
+          state
+        );
 
 
 

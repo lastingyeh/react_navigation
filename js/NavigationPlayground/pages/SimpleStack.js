@@ -52,6 +52,8 @@ MyProfileScreen.navigationOptions = props => {
   const { state, setParams } = navigation;
   const { params } = state;
 
+  console.log(navigation)
+
   return {
     headerTitle: `${params.name}'s Profile`,
     headerRight: (
