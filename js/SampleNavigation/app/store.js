@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import logger from 'redux-logger';
 
 // navigation
@@ -7,7 +7,15 @@ import { NavigatorTabOne } from './tabOne/navigationConfiguration';
 import { NavigatorTabTwo } from './tabTwo/navigationConfiguration';
 import { NavigatorTabThree } from './tabThree/navigationConfiguration';
 
-const middleware = () => applyMiddleware(logger);
+// use redux dev-tools
+const composeEnhancers = typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+  : compose;
+
+// const middleware = () => applyMiddleware(logger);
+
+const enhancer = composeEnhancers(applyMiddleware(logger));
 
 export default createStore(
   combineReducers({
@@ -19,5 +27,5 @@ export default createStore(
     tabThree: (state, action) =>
       NavigatorTabThree.router.getStateForAction(action, state)
   }),
-  middleware()
+  enhancer
 );
