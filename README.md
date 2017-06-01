@@ -507,6 +507,14 @@
           state
         );
 
+### SampleNavigation
+
+  1. use redux to match react-navigation
+
+  2. modify codes
+
+  3. refs by https://github.com/parkerdan/SampleNavigation
+
 
 
                                                  

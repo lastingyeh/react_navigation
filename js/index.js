@@ -7,7 +7,13 @@ import { AppRegistry } from 'react-native';
 // import navigation from './NavigationPlayground/App';
 
 // 2. redux example
-import navigation from './ReduxExample/';
+// import navigation from './ReduxExample/';
+
+// 3. started react navigation
+// import navigation from './StartedReactNavigation';
+
+// 4. sample navigation
+import navigation from './SampleNavigation';
 
 export default () => {
   AppRegistry.registerComponent('react_navigation', () => navigation);
