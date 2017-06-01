@@ -513,7 +513,21 @@
 
   2. modify codes
 
-  3. refs by https://github.com/parkerdan/SampleNavigation
+  3. work flow
+
+    3.1 components 
+    
+      TabBar -> create from TabNavigator({screen:...})
+
+    3.2 connect to redux
+    
+      TabBarNavigation -> put state.tabBar state && dispatch to TabBar navigation of prop
+
+    3.3 reducer
+
+      TabBar.router.getStateForAction(action, state)
+
+  4. refs by https://github.com/parkerdan/SampleNavigation
 
 
 
