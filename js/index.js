@@ -13,7 +13,7 @@ import { AppRegistry } from 'react-native';
 // import navigation from './StartedReactNavigation';
 
 // 4. sample navigation
-// import navigation from './SampleNavigation';
+import navigation from './SampleNavigation';
 
 export default () => {
   AppRegistry.registerComponent('react_navigation', () => navigation);

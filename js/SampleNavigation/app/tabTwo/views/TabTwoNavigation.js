@@ -17,7 +17,7 @@ const TabTwoNavigation = ({ navigationState, dispatch }) => (
 );
 
 TabTwoNavigation.navigationOptions = {
-  tabBarLabel: 'Tab One',
+  tabBarLabel: 'Tab Two',
   tabBarIcon: ({ tintColor }) => (
     <Icon size={20} name="cogs" color={tintColor} />
   )
