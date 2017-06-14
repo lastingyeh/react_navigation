@@ -43,18 +43,16 @@ export const Tabs = TabNavigator({
     screen: FeedStack,
     navigationOptions: {
       tabBarLabel: 'Feed',
-      tabBarIcon: ({ tintColor }) => (
+      tabBarIcon: ({ tintColor }) =>
         <Icon name="list" size={35} color={tintColor} />
-      )
     }
   },
   MeStacks: {
     screen: MeStacks,
     navigationOptions: {
       tabBarLabel: 'Me',
-      tabBarIcon: ({ tintColor }) => (
+      tabBarIcon: ({ tintColor }) =>
         <Icon name="account-circle" size={35} color={tintColor} />
-      )
     }
   }
 });
